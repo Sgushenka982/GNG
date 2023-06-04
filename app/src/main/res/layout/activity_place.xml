@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_1"
+    tools:context=".PlaceActivity">
+
+    <Button
+        android:id="@+id/guestsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#C40202"
+        android:text="Списки"
+        app:layout_constraintEnd_toEndOf="@+id/accessCodesBtn"
+        app:layout_constraintStart_toStartOf="@+id/accessCodesBtn"
+        app:layout_constraintTop_toBottomOf="@+id/accessCodesBtn" />
+
+    <Button
+        android:id="@+id/accessCodesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#C40202"
+        android:text="Коды доступа"
+        app:layout_constraintEnd_toEndOf="@+id/riderBtn"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/riderBtn"
+        app:layout_constraintTop_toBottomOf="@+id/riderBtn" />
+
+    <TextView
+        android:id="@+id/clubName"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="#C40202"
+        android:fontFamily="casual"
+        android:text="площадка"
+        android:textAlignment="center"
+        android:textColor="#1e1e1e"
+        android:textFontWeight="1000"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/riderBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#C40202"
+        android:text="Бытовой райдер"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clubName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

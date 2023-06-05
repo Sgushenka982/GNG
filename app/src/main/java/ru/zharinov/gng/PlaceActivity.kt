@@ -24,6 +24,8 @@ class PlaceActivity : AppCompatActivity() {
         btn.setOnClickListener(getOnClickDoSomething(btn))
         btn = bindingLayout.guestsBtn
         btn.setOnClickListener(getOnClickDoSomething(btn))
+
+
     }
 
     fun getOnClickDoSomething(button: Button): View.OnClickListener? {

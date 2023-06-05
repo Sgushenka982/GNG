@@ -7,13 +7,13 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.room.Room
 import com.google.gson.Gson
+import model.Rider
 import model.SingerWithConcert
 import room.AppDatabase
 import ru.zharinov.gng.databinding.ActivityMainBinding
@@ -39,21 +39,26 @@ class MainActivity : AppCompatActivity() {
             .build()
 
 
+        val singerRepository = db.singerRepository()
+        val concertRepository = db.concertRepository()
 
-            val singerRepository=db.singerRepository()
-            val singersList: List<SingerWithConcert> = singerRepository.getAllSingers()
-            Log.i("INFO", singerRepository.getAll().toString())
+        val singersList: List<SingerWithConcert> = singerRepository.getAllSingers()
+        val riderList: List<Rider> = concertRepository.getAllRiders(1)
+            Log.i("INFO", riderList.toString())
 
 
 
-            for(singerWithConcert:SingerWithConcert in singersList){
-                val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                params.topMargin= 60
+        for (singerWithConcert: SingerWithConcert in singersList) {
+            val params = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params.topMargin = 60
 
-                var btn = createButton(singerWithConcert)
-                bindingClass.singersBlock.addView(btn, params)
-                btn.setOnClickListener(getOnClickDoSomething(btn, singerWithConcert))
-            }
+            var btn = createButton(singerWithConcert)
+            bindingClass.singersBlock.addView(btn, params)
+            btn.setOnClickListener(getOnClickDoSomething(btn, singerWithConcert))
+        }
 
     }
 

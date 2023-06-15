@@ -7,8 +7,9 @@ import androidx.room.Relation
 data class SingerWithConcert (
     @Embedded val singer: Singer,
     @Relation(
+        entity = Concert::class,
         parentColumn = "id",
         entityColumn = "singerId"
     )
-    val concertList: List<Concert>
+    val concertList: List<ConcertWithInfo>
 )

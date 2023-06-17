@@ -1,14 +1,27 @@
 package ru.zharinov.gng
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.google.gson.Gson
-import model.ConcertWithInfo
-import ru.zharinov.gng.databinding.ActivityPlaceBinding
+import com.google.gson.reflect.TypeToken
+import model.Rider
 import ru.zharinov.gng.databinding.ActivityTemplateBinding
+
 
 class TemplateActivity : AppCompatActivity() {
     lateinit var bindingLayout: ActivityTemplateBinding
@@ -19,17 +32,46 @@ class TemplateActivity : AppCompatActivity() {
         setContentView(bindingLayout.root)
 
         val gson = Gson()
-        val info: Any = gson.fromJson(intent.getStringExtra("infoList"), Any::class.java)
+        val listType = object : TypeToken<ArrayList<Any>>() {}.type
+        val infoList: List<Any> = gson.fromJson(intent.getStringExtra("infoListJson") , listType)
+
+//        setContent(){
+//            infoList(info)
+//        }
 
         val templateName: String? = intent.getStringExtra("header")
         bindingLayout.templateName.text = templateName?.toUpperCase()
 
-        infoList = findViewById(R.id.recyclerView)
-
-        var layoutManager: LinearLayoutManager = LinearLayoutManager(this)
-        infoList.layoutManager = layoutManager
-        infoList.setHasFixedSize(true)
+//        var layoutManager: LinearLayoutManager = LinearLayoutManager(this)
+//        infoList.layoutManager = layoutManager
+//        infoList.setHasFixedSize(true)
     }
+
+    @Composable
+    fun infoList(infoList: List<Rider>){
+        LazyColumn{
+            items(infoList) { info->
+                Row() {
+                    Text(
+                        text = "• " + info.requirements,
+                        fontSize=24.sp ,
+                        color = Color.White ,
+                        textAlign= TextAlign.Left ,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 5.dp)
+                            .padding(start = 10.dp)
+                    )
+                }
+            }
+        }
+    }
+
+//    @Preview(showBackground = true)
+//    @Composable
+//    fun infoListPreview(){
+//        infoList()
+//    }
 }
 
 
